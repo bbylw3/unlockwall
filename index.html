@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>付费墙移除工具导航</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+        --primary-color: #ff9000;
+        --primary-hover: #ff7200;
+        --bg-color: #1b1b1b;
+        --card-bg: #2a2a2a;
+        --card-hover: #303030;
+        --text-gray: #909090;
+      }
+
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #fff;
+        background: var(--bg-color);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container {
+        width: 92%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: clamp(1rem, 3vw, 2rem);
+        flex: 1;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: clamp(2rem, 5vw, 3rem);
+        background: #000;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        color: #fff;
+        margin-bottom: clamp(0.5rem, 2vw, 1rem);
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      h1 span {
+        color: var(--primary-color);
+      }
+
+      .subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        color: var(--text-gray);
+      }
+
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        gap: clamp(1rem, 2vw, 1.5rem);
+        margin-bottom: 3rem;
+      }
+
+      .tool-card {
+        background: var(--card-bg);
+        border-radius: 8px;
+        padding: clamp(1.2rem, 3vw, 1.5rem);
+        transition: all 0.3s ease;
+        border: 1px solid #3a3a3a;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .tool-card:hover {
+        transform: translateY(-5px);
+        background: var(--card-hover);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .tool-card h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
+        text-transform: uppercase;
+      }
+
+      .tool-card p {
+        color: var(--text-gray);
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .button {
+        display: inline-block;
+        padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+        background: var(--primary-color);
+        color: #000;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 100%;
+        text-align: center;
+        font-size: clamp(0.9rem, 2vw, 1rem);
+      }
+
+      .button:hover {
+        background: var(--primary-hover);
+        transform: scale(1.02);
+      }
+
+      footer {
+        text-align: center;
+        color: var(--text-gray);
+        padding: clamp(1.5rem, 3vw, 2rem) 0;
+        border-top: 1px solid var(--card-bg);
+        font-size: clamp(0.8rem, 2vw, 0.9rem);
+      }
+
+      /* 移动设备横屏 */
+      @media screen and (orientation: landscape) and (max-height: 500px) {
+        .container {
+          padding: 0.8rem;
+        }
+
+        header {
+          padding: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        .tools-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .tool-card {
+          padding: 1rem;
+        }
+      }
+
+      /* 平板设备 */
+      @media screen and (min-width: 768px) and (max-width: 1024px) {
+        .tools-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* 大屏设备 */
+      @media screen and (min-width: 1400px) {
+        html {
+          font-size: 18px;
+        }
+
+        .tools-grid {
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+      }
+
+      /* 深色模式优化 */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --primary-color: #ff9000;
+          --primary-hover: #ff7200;
+        }
+      }
+
+      /* 减少动画 */
+      @media (prefers-reduced-motion: reduce) {
+        .tool-card,
+        .button {
+          transition: none;
+        }
+
+        .tool-card:hover {
+          transform: none;
+        }
+      }
+
+      /* 高对比度模式 */
+      @media (prefers-contrast: high) {
+        :root {
+          --primary-color: #ffa500;
+          --text-gray: #b0b0b0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Paywall<span>Hub</span></h1>
+        <p class="subtitle">轻松访问您想阅读的内容</p>
+      </header>
+
+      <main class="tools-grid">
+        <div class="tool-card">
+          <h2>12ft.io</h2>
+          <p>简单易用的付费墙移除工具，只需在原始URL前添加"12ft.io/"</p>
+          <a
+            href="https://12ft.io/"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+            >访问网站</a
+          >
+        </div>
+
+        <div class="tool-card">
+          <h2>Archive.ph</h2>
+          <p>网页存档服务，可以查看付费内容的存档版本</p>
+          <a
+            href="https://archive.ph/"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+            >访问网站</a
+          >
+        </div>
+
+        <div class="tool-card">
+          <h2>Paywall Buster</h2>
+          <p>专业的付费墙移除工具，支持多种新闻网站</p>
+          <a
+            href="https://paywallbuster.com/"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+            >访问网站</a
+          >
+        </div>
+
+        <div class="tool-card">
+          <h2>Remove Paywall</h2>
+          <p>简洁的付费墙移除工具</p>
+          <a
+            href="https://www.removepaywall.com/"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+            >访问网站</a
+          >
+        </div>
+
+        <div class="tool-card">
+          <h2>Paywall Reader</h2>
+          <p>支持多种新闻网站的付费墙移除工具</p>
+          <a
+            href="https://paywallreader.com/"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+            >访问网站</a
+          >
+        </div>
+      </main>
+
+      <footer>
+        <p>注意：请合理使用这些工具，尊重创作者的劳动成果</p>
+      </footer>
+    </div>
+  </body>
+</html>
